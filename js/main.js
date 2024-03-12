@@ -313,15 +313,33 @@ function init() {
         }
     );
 
-    // Picture on wall
-    const wallPictureGeometry = new THREE.PlaneGeometry(2, 2);
-    const wallPicturetextureLoader = new THREE.TextureLoader();
-    wallPicturetextureLoader.load('/img/MCpic_skull.png',
+    // Pictures on wall
+    const wallPicture1Geometry = new THREE.PlaneGeometry(2, 2);
+    const wallPicture1textureLoader = new THREE.TextureLoader();
+    wallPicture1textureLoader.load('/img/MCpic_skull.png',
       function (texture) {
-        const wallPictureMaterial = new THREE.MeshPhongMaterial({ map: texture, side: THREE.DoubleSide });
-        const wallPicture = new THREE.Mesh(wallPictureGeometry, wallPictureMaterial);
-        wallPicture.position.set(0, 0, 0.08);
-        wall1.add(wallPicture);
+        const wallPicture1Material = new THREE.MeshPhongMaterial({ map: texture, side: THREE.DoubleSide });
+        const wallPicture1 = new THREE.Mesh(wallPicture1Geometry, wallPicture1Material);
+        wallPicture1.position.set(0, 0, 0.08);
+        wall1.add(wallPicture1);
+        renderer.render(scene, camera);
+      },
+      function (xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+      },
+      function (error) {
+        console.error('Error loading texture:', error);
+      }
+    );
+
+    const wallPicture2Geometry = new THREE.PlaneGeometry(2, 1);
+    const wallPicture2textureLoader = new THREE.TextureLoader();
+    wallPicture2textureLoader.load('/img/MCpic_creeper.png',
+      function (texture) {
+        const wallPicture2Material = new THREE.MeshPhongMaterial({ map: texture, side: THREE.DoubleSide });
+        const wallPicture2 = new THREE.Mesh(wallPicture2Geometry, wallPicture2Material);
+        wallPicture2.position.set(0, 0, 0.1);
+        wall2.add(wallPicture2);
         renderer.render(scene, camera);
       },
       function (xhr) {
